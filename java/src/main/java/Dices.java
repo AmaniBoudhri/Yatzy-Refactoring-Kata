@@ -3,7 +3,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
-
+import java.util.stream.Collectors;
 import static java.util.Comparator.reverseOrder;
 import static java.util.Optional.ofNullable;
 import static java.util.stream.Collectors.toList;
@@ -16,7 +16,6 @@ public class Dices {
 
     public Dices(int d1, int d2, int d3, int d4, int d5) {
         this.dice = List.of(d1, d2, d3, d4, d5);
-    }
 
     public Map<Integer, Long> getCountsMap() {
         return dice.stream()
