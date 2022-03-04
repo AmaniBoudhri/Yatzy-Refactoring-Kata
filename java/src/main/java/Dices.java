@@ -1,24 +1,25 @@
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
 import java.util.stream.Collectors;
-
-import static java.util.Arrays.asList;
 import static java.util.Comparator.reverseOrder;
 import static java.util.Optional.ofNullable;
 import static java.util.stream.Collectors.toList;
 
 public class Dices {
 
+    public static final List<Integer> SMALL_STRAIGHT_LIST = List.of(1, 2, 3, 4, 5);
+    public static final List<Integer> LARGEST_STRAIGHT_LIST = List.of(2, 3, 4, 5, 6);
     private final List<Integer> dice;
 
     public Dices(int d1, int d2, int d3, int d4, int d5) {
-        this.dice = asList(d1, d2, d3, d4, d5);
+        this.dice = List.of(d1, d2, d3, d4, d5);
     }
 
     public Map<Integer, Long> getCountsMap() {
         return dice.stream()
-            .collect(Collectors.groupingBy(d -> d, Collectors.counting()));
+            .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
     }
 
     public int sum() {
@@ -34,17 +35,17 @@ public class Dices {
             .anyMatch(e -> e.getValue() == 5);
     }
 
-    public int getDiceNumber(Map<Integer, Long> counts, int i) {
-        return ofNullable(counts.get(i)).orElse(0L)
-            .intValue() * i;
+    public int getDiceNumber(Map<Integer, Long> counts, int diceNumber) {
+        return ofNullable(counts.get(diceNumber)).orElse(0L)
+            .intValue() * diceNumber;
     }
 
-    public Integer getNumberOfKind(Map<Integer, Long> counts, int i) {
+    public Integer getNumberOfKind(Map<Integer, Long> counts, int kindNumber) {
         return counts.entrySet().stream()
-            .filter(e -> e.getValue() >= i)
+            .filter(e -> e.getValue() >= kindNumber)
             .map(Map.Entry::getKey)
             .max(Comparator.naturalOrder())
-            .map(d -> d * i)
+            .map(d -> d * kindNumber)
             .orElse(0);
     }
 
@@ -60,13 +61,13 @@ public class Dices {
         return dice.stream()
             .sorted()
             .collect(toList())
-            .equals(asList(1, 2, 3, 4, 5));
+            .equals(SMALL_STRAIGHT_LIST);
     }
 
     public boolean isLargeStraight() {
         return dice.stream()
             .sorted()
             .collect(toList())
-            .equals(asList(2, 3, 4, 5, 6));
+            .equals(LARGEST_STRAIGHT_LIST);
     }
 }

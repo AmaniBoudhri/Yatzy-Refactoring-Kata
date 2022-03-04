@@ -43,14 +43,18 @@ public class Yatzy {
         return dices.getNumberOfKind(dices.getCountsMap(), 2);
     }
 
-    public static int twoPair(Dices dices) {
+    public static int twoPairs(Dices dices) {
         List<Integer> pairs = dices.findTwoPairs();
-        if (pairs.size() >= 2) {
+        if (hasAtLeastTwoPairs(pairs)) {
             return pairs.stream()
                 .mapToInt(pair -> pair * 2)
                 .sum();
         }
         return 0;
+    }
+
+    private static boolean hasAtLeastTwoPairs(List<Integer> pairs) {
+        return pairs.size() >= 2;
     }
 
     public static int threeOfAKind(Dices dices) {
@@ -78,10 +82,14 @@ public class Yatzy {
 
     public static int fullHouse(Dices dices) {
 
-        if (dices.getNumberOfKind(dices.getCountsMap(), 3) != 0 && !dices.findTwoPairs().isEmpty() && !dices.isYatzy()) {
+        if (isAfullHouse(dices)) {
             return dices.sum();
         }
         return 0;
+    }
+
+    private static boolean isAfullHouse(Dices dices) {
+        return dices.getNumberOfKind(dices.getCountsMap(), 3) != 0 && !dices.findTwoPairs().isEmpty() && !dices.isYatzy();
     }
 }
 
