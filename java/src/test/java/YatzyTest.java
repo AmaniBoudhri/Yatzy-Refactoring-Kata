@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class YatzyTest {
 
     @Test
-    public void chance_scores_sum_of_all_dice() {
+    public void chance() {
         int expected = 15;
         int actual = Yatzy.chance(2, 3, 4, 5, 1);
         assertEquals(expected, actual);
@@ -13,7 +13,7 @@ public class YatzyTest {
     }
 
     @Test
-    public void yatzy_scores_50() {
+    public void yatzy() {
         int expected = 50;
         int actual = Yatzy.yatzy(4, 4, 4, 4, 4);
         assertEquals(expected, actual);
@@ -22,7 +22,7 @@ public class YatzyTest {
     }
 
     @Test
-    public void test_1s() {
+    public void ones() {
         assertEquals(1, Yatzy.ones(1, 2, 3, 4, 5));
         assertEquals(2, Yatzy.ones(1, 2, 1, 4, 5));
         assertEquals(0, Yatzy.ones(6, 2, 2, 4, 5));
@@ -30,19 +30,19 @@ public class YatzyTest {
     }
 
     @Test
-    public void test_2s() {
+    public void twos() {
         assertEquals(4, Yatzy.twos(1, 2, 3, 2, 6));
         assertEquals(10, Yatzy.twos(2, 2, 2, 2, 2));
     }
 
     @Test
-    public void test_threes() {
+    public void threes() {
         assertEquals(6, Yatzy.threes(1, 2, 3, 2, 3));
         assertEquals(12, Yatzy.threes(2, 3, 3, 3, 3));
     }
 
     @Test
-    public void fours_test() {
+    public void fours() {
         assertEquals(12, new Yatzy(4, 4, 4, 5, 5).fours());
         assertEquals(8, new Yatzy(4, 4, 5, 5, 5).fours());
         assertEquals(4, new Yatzy(4, 5, 5, 5, 5).fours());
@@ -56,34 +56,34 @@ public class YatzyTest {
     }
 
     @Test
-    public void sixes_test() {
+    public void sixes() {
         assertEquals(0, new Yatzy(4, 4, 4, 5, 5).sixes());
         assertEquals(6, new Yatzy(4, 4, 6, 5, 5).sixes());
         assertEquals(18, new Yatzy(6, 5, 6, 6, 5).sixes());
     }
 
     @Test
-    public void one_pair() {
+    public void pair() {
         assertEquals(6, Yatzy.score_pair(3, 4, 3, 5, 6));
         assertEquals(10, Yatzy.score_pair(5, 3, 3, 3, 5));
         assertEquals(12, Yatzy.score_pair(5, 3, 6, 6, 5));
     }
 
     @Test
-    public void two_Pair() {
+    public void twoPairs() {
         assertEquals(16, Yatzy.two_pair(3, 3, 5, 4, 5));
         assertEquals(16, Yatzy.two_pair(3, 3, 5, 5, 5));
     }
 
     @Test
-    public void three_of_a_kind() {
+    public void threeOfAKind() {
         assertEquals(9, Yatzy.three_of_a_kind(3, 3, 3, 4, 5));
         assertEquals(15, Yatzy.three_of_a_kind(5, 3, 5, 4, 5));
         assertEquals(9, Yatzy.three_of_a_kind(3, 3, 3, 3, 5));
     }
 
     @Test
-    public void four_of_a_knd() {
+    public void fourOfAKind() {
         assertEquals(12, Yatzy.four_of_a_kind(3, 3, 3, 3, 5));
         assertEquals(20, Yatzy.four_of_a_kind(5, 5, 5, 4, 5));
         assertEquals(9, Yatzy.three_of_a_kind(3, 3, 3, 3, 3));
