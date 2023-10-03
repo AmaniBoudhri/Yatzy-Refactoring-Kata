@@ -32,9 +32,9 @@ public class YatzyTest {
 
     @Test
     public void twos() {
-        assertEquals(4, Yatzy.twos(1, 2, 3, 2, 6));
-        assertEquals(10, Yatzy.twos(2, 2, 2, 2, 2));
-        assertEquals(4, Yatzy.twos(2, 3, 2, 5, 1));
+        assertEquals(4, Yatzy.twos(new DiceRoller(1, 2, 3, 2, 6)));
+        assertEquals(10, Yatzy.twos(new DiceRoller(2, 2, 2, 2, 2)));
+        assertEquals(4, Yatzy.twos(new DiceRoller(2, 3, 2, 5, 1)));
     }
 
     @Test
