@@ -1,36 +1,20 @@
-import java.util.Map;
-import java.util.stream.Stream;
-
-import static java.util.function.Function.identity;
-import static java.util.stream.Collectors.counting;
-import static java.util.stream.Collectors.groupingBy;
-
 public class Yatzy {
 
     public static int chance(int d1, int d2, int d3, int d4, int d5) {
         return d1 + d2 + d3 + d4 + d5;
     }
 
-    public static int yatzy(int d1, int d2, int d3, int d4, int d5) {
-        Map<Integer, Long> count = Stream.of(d1, d2, d3, d4, d5)
-            .collect(groupingBy(identity(), counting()));
-        return count.values().stream()
+    public static int yatzy(DiceRoller diceRoller) {
+        return diceRoller.getCountsMap()
+            .values().stream()
             .filter(value -> value == 5)
             .findAny()
             .map(entry -> 50)
             .orElse(0);
     }
 
-    public static int ones(int d1, int d2, int d3, int d4, int d5) {
-        int sum = 0;
-        if (d1 == 1) sum++;
-        if (d2 == 1) sum++;
-        if (d3 == 1) sum++;
-        if (d4 == 1) sum++;
-        if (d5 == 1)
-            sum++;
-
-        return sum;
+    public static int ones(DiceRoller diceRoller) {
+        return diceRoller.getCountsMap().getOrDefault(1, 0L).intValue();
     }
 
     public static int twos(int d1, int d2, int d3, int d4, int d5) {
