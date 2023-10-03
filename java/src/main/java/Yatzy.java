@@ -9,12 +9,10 @@ public class Yatzy {
     }
 
     public static int yatzy(DiceRoller diceRoller) {
-        return diceRoller.getCountsMap()
-            .values().stream()
-            .filter(value -> value == 5)
-            .findAny()
-            .map(entry -> 50)
-            .orElse(0);
+        if (diceRoller.isYatzy()) {
+            return 50;
+        }
+        return 0;
     }
 
 

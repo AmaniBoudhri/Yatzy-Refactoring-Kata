@@ -25,6 +25,13 @@ public class DiceRoller {
             .sum();
     }
 
+    public boolean isYatzy() {
+        return getCountsMap()
+            .entrySet()
+            .stream()
+            .anyMatch(e -> e.getValue() == 5);
+    }
+
     public int getDiceNumberCount(int diceNumber) {
         return getCountsMap()
             .getOrDefault(diceNumber, 0L)
