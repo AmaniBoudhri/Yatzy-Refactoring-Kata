@@ -64,26 +64,12 @@ public class Yatzy {
     }
 
     public static int threeOfAKind(DiceRoller diceRoller) {
-        return diceRoller.getCountsMap().entrySet().stream()
-            .filter(e -> e.getValue() >= 3)
-            .map(Map.Entry::getKey)
-            .max(Comparator.naturalOrder())
-            .map(d -> d * 3)
-            .orElse(0);
+        return diceRoller.getNumberOfKind(diceRoller.getCountsMap(), 3);
+
     }
 
-    public static int fourOfAKind(int d1, int d2, int d3, int d4, int d5) {
-        int[] tallies;
-        tallies = new int[6];
-        tallies[d1 - 1]++;
-        tallies[d2 - 1]++;
-        tallies[d3 - 1]++;
-        tallies[d4 - 1]++;
-        tallies[d5 - 1]++;
-        for (int i = 0; i < 6; i++)
-            if (tallies[i] >= 4)
-                return (i + 1) * 4;
-        return 0;
+    public static int fourOfAKind(DiceRoller diceRoller) {
+        return diceRoller.getNumberOfKind(diceRoller.getCountsMap(), 4);
     }
 
     public static int smallStraight(int d1, int d2, int d3, int d4, int d5) {
