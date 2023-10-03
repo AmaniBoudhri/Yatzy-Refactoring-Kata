@@ -17,4 +17,9 @@ public class DiceRoller {
             .collect(groupingBy(identity(), counting()));
     }
 
+    public int sum() {
+        return dices.stream()
+            .mapToInt(Integer::intValue)
+            .sum();
+    }
 }

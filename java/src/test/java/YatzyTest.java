@@ -6,10 +6,10 @@ public class YatzyTest {
 
     @Test
     public void chance() {
-        assertEquals(15, Yatzy.chance(2, 3, 4, 5, 1));
-        assertEquals(16, Yatzy.chance(3, 3, 4, 5, 1));
-        assertEquals(14, Yatzy.chance(1, 1, 3, 3, 6));
-        assertEquals(21, Yatzy.chance(4, 5, 5, 6, 1));
+        assertEquals(15, Yatzy.chance(new DiceRoller(2, 3, 4, 5, 1)));
+        assertEquals(16, Yatzy.chance(new DiceRoller(3, 3, 4, 5, 1)));
+        assertEquals(14, Yatzy.chance(new DiceRoller(1, 1, 3, 3, 6)));
+        assertEquals(21, Yatzy.chance(new DiceRoller(4, 5, 5, 6, 1)));
     }
 
     @Test
