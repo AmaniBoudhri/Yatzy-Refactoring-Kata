@@ -1,130 +1,97 @@
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class YatzyTest {
 
-    @Test
-    public void chance() {
-        assertEquals(15, Yatzy.chance(new DiceRoller(2, 3, 4, 5, 1)));
-        assertEquals(16, Yatzy.chance(new DiceRoller(3, 3, 4, 5, 1)));
-        assertEquals(14, Yatzy.chance(new DiceRoller(1, 1, 3, 3, 6)));
-        assertEquals(21, Yatzy.chance(new DiceRoller(4, 5, 5, 6, 1)));
+    @ParameterizedTest
+    @CsvSource({"2, 3, 4, 5, 1,15", "3, 3, 4, 5, 1,16", "1, 1, 3, 3, 6,14", "4, 5, 5, 6, 1,21"})
+    public void chance(int d1, int d2, int d3, int d4, int d5, int expected) {
+        assertEquals(expected, Yatzy.chance(new DiceRoller(d1, d2, d3, d4, d5)));
     }
 
-    @Test
-    public void yatzy() {
-        assertEquals(50, Yatzy.yatzy(new DiceRoller(4, 4, 4, 4, 4)));
-        assertEquals(50, Yatzy.yatzy(new DiceRoller(6, 6, 6, 6, 6)));
-        assertEquals(0, Yatzy.yatzy(new DiceRoller(6, 6, 6, 6, 3)));
-        assertEquals(50, Yatzy.yatzy(new DiceRoller(1, 1, 1, 1, 1)));
-        assertEquals(0, Yatzy.yatzy(new DiceRoller(1, 1, 1, 2, 1)));
+    @ParameterizedTest
+    @CsvSource({"4, 4, 4, 4, 4,50", "6, 6, 6, 6, 6,50", "6, 6, 6, 6, 3,0", "1, 1, 1, 1, 1,50", "1, 1, 1, 2, 1,0"})
+    public void yatzy(int d1, int d2, int d3, int d4, int d5, int expected) {
+        assertEquals(expected, Yatzy.yatzy(new DiceRoller(d1, d2, d3, d4, d5)));
     }
 
-    @Test
-    public void ones() {
-        assertEquals(1, Yatzy.ones(new DiceRoller(1, 2, 3, 4, 5)));
-        assertEquals(2, Yatzy.ones(new DiceRoller(1, 2, 1, 4, 5)));
-        assertEquals(0, Yatzy.ones(new DiceRoller(6, 2, 2, 4, 5)));
-        assertEquals(4, Yatzy.ones(new DiceRoller(1, 2, 1, 1, 1)));
-        assertEquals(0, Yatzy.ones(new DiceRoller(3, 3, 3, 4, 5)));
+    @ParameterizedTest
+    @CsvSource({"1, 2, 3, 4, 5,1", "1, 2, 1, 4, 5,2", "6, 2, 2, 4, 5,0", "1, 2, 1, 1, 1,4", "3, 3, 3, 4, 5,0"})
+    public void ones(int d1, int d2, int d3, int d4, int d5, int expected) {
+        assertEquals(expected, Yatzy.ones(new DiceRoller(d1, d2, d3, d4, d5)));
     }
 
-    @Test
-    public void twos() {
-        assertEquals(4, Yatzy.twos(new DiceRoller(1, 2, 3, 2, 6)));
-        assertEquals(10, Yatzy.twos(new DiceRoller(2, 2, 2, 2, 2)));
-        assertEquals(4, Yatzy.twos(new DiceRoller(2, 3, 2, 5, 1)));
+    @ParameterizedTest
+    @CsvSource({"1, 2, 3, 2, 6,4", "2, 2, 2, 2, 2,10", "2, 3, 2, 5, 1,4"})
+    public void twos(int d1, int d2, int d3, int d4, int d5, int expected) {
+        assertEquals(expected, Yatzy.twos(new DiceRoller(d1, d2, d3, d4, d5)));
     }
 
-    @Test
-    public void threes() {
-        assertEquals(6, Yatzy.threes(new DiceRoller(1, 2, 3, 2, 3)));
-        assertEquals(12, Yatzy.threes(new DiceRoller(2, 3, 3, 3, 3)));
+    @ParameterizedTest
+    @CsvSource({"1, 2, 3, 2, 3,6", "2, 3, 3, 3, 3,12"})
+    public void threes(int d1, int d2, int d3, int d4, int d5, int expected) {
+        assertEquals(expected, Yatzy.threes(new DiceRoller(d1, d2, d3, d4, d5)));
     }
 
-    @Test
-    public void fours() {
-        assertEquals(12, Yatzy.fours(new DiceRoller(4, 4, 4, 5, 5)));
-        assertEquals(8, Yatzy.fours(new DiceRoller(4, 4, 5, 5, 5)));
-        assertEquals(4, Yatzy.fours(new DiceRoller(4, 5, 5, 5, 5)));
-        assertEquals(8, Yatzy.fours(new DiceRoller(1, 1, 2, 4, 4)));
-
+    @ParameterizedTest
+    @CsvSource({"4, 4, 4, 5, 5,12", "4, 4, 5, 5, 5,8", "4, 5, 5, 5, 5,4", "1, 1, 2, 4, 4,8"})
+    public void fours(int d1, int d2, int d3, int d4, int d5, int expected) {
+        assertEquals(expected, Yatzy.fours(new DiceRoller(d1, d2, d3, d4, d5)));
     }
 
-    @Test
-    public void fives() {
-        assertEquals(10, Yatzy.fives(new DiceRoller(4, 4, 4, 5, 5)));
-        assertEquals(15, Yatzy.fives(new DiceRoller(4, 4, 5, 5, 5)));
-        assertEquals(20, Yatzy.fives(new DiceRoller(4, 5, 5, 5, 5)));
+    @ParameterizedTest
+    @CsvSource({"4, 4, 4, 5, 5,10", "4, 4, 5, 5, 5,15", "4, 5, 5, 5, 5,20"})
+    public void fives(int d1, int d2, int d3, int d4, int d5, int expected) {
+        assertEquals(expected, Yatzy.fives(new DiceRoller(d1, d2, d3, d4, d5)));
     }
 
-    @Test
-    public void sixes() {
-        assertEquals(0, Yatzy.sixes(new DiceRoller(4, 4, 4, 5, 5)));
-        assertEquals(6, Yatzy.sixes(new DiceRoller(4, 4, 6, 5, 5)));
-        assertEquals(18, Yatzy.sixes(new DiceRoller(6, 5, 6, 6, 5)));
+    @ParameterizedTest
+    @CsvSource({"4, 4, 4, 5, 5,0", "4, 4, 6, 5, 5,6", "6, 5, 6, 6, 5,18"})
+    public void sixes(int d1, int d2, int d3, int d4, int d5, int expected) {
+        assertEquals(expected, Yatzy.sixes(new DiceRoller(d1, d2, d3, d4, d5)));
     }
 
-    @Test
-    public void pair() {
-        assertEquals(6, Yatzy.pair(new DiceRoller(3, 4, 3, 5, 6)));
-        assertEquals(10, Yatzy.pair(new DiceRoller(5, 3, 3, 3, 5)));
-        assertEquals(12, Yatzy.pair(new DiceRoller(5, 3, 6, 6, 5)));
-        assertEquals(8, Yatzy.pair(new DiceRoller(3, 3, 3, 4, 4)));
-        assertEquals(12, Yatzy.pair(new DiceRoller(1, 1, 6, 2, 6)));
-        assertEquals(6, Yatzy.pair(new DiceRoller(3, 3, 3, 4, 1)));
-        assertEquals(6, Yatzy.pair(new DiceRoller(3, 3, 3, 3, 1)));
+    @ParameterizedTest
+    @CsvSource({"3, 4, 3, 5, 6,6", "5, 3, 3, 3, 5,10", "5, 3, 6, 6, 5,12", "3, 3, 3, 4, 4,8", "1, 1, 6, 2, 6,12", "3, 3, 3, 4, 1,6", "3, 3, 3, 3, 1,6"})
+    public void pair(int d1, int d2, int d3, int d4, int d5, int expected) {
+        assertEquals(expected, Yatzy.pair(new DiceRoller(d1, d2, d3, d4, d5)));
     }
 
-    @Test
-    public void twoPairs() {
-        assertEquals(16, Yatzy.twoPairs(new DiceRoller(3, 3, 5, 4, 5)));
-        assertEquals(16, Yatzy.twoPairs(new DiceRoller(3, 3, 5, 5, 5)));
-        assertEquals(8, Yatzy.twoPairs(new DiceRoller(1, 1, 2, 3, 3)));
-        assertEquals(0, Yatzy.twoPairs(new DiceRoller(1, 1, 2, 3, 4)));
-        assertEquals(6, Yatzy.twoPairs(new DiceRoller(1, 1, 2, 2, 2)));
+    @ParameterizedTest
+    @CsvSource({"3, 3, 5, 4, 5,16", "3, 3, 5, 5, 5,16", "1, 1, 2, 3, 3,8", "1, 1, 2, 3, 4,0", "1, 1, 2, 2, 2,6"})
+    public void twoPair(int d1, int d2, int d3, int d4, int d5, int expected) {
+        assertEquals(expected, Yatzy.twoPairs(new DiceRoller(d1, d2, d3, d4, d5)));
     }
 
-    @Test
-    public void threeOfAKind() {
-        assertEquals(9, Yatzy.threeOfAKind(new DiceRoller(3, 3, 3, 4, 5)));
-        assertEquals(15, Yatzy.threeOfAKind(new DiceRoller(5, 3, 5, 4, 5)));
-        assertEquals(9, Yatzy.threeOfAKind(new DiceRoller(3, 3, 3, 3, 5)));
-        assertEquals(9, Yatzy.threeOfAKind(new DiceRoller(3, 3, 3, 3, 3)));
-        assertEquals(0, Yatzy.threeOfAKind(new DiceRoller(3, 3, 4, 5, 6)));
-        assertEquals(9, Yatzy.threeOfAKind(new DiceRoller(3, 3, 3, 3, 1)));
+    @ParameterizedTest
+    @CsvSource({"3, 3, 3, 4, 5,9", "5, 3, 5, 4, 5,15", "3, 3, 3, 3, 5,9", "3, 3, 3, 3, 3,9", "3, 3, 4, 5, 6,0", "3, 3, 3, 3, 1,9"})
+    public void threeOfAKind(int d1, int d2, int d3, int d4, int d5, int expected) {
+        assertEquals(expected, Yatzy.threeOfAKind(new DiceRoller(d1, d2, d3, d4, d5)));
     }
 
-    @Test
-    public void fourOfAKind() {
-        assertEquals(12, Yatzy.fourOfAKind(new DiceRoller(3, 3, 3, 3, 5)));
-        assertEquals(20, Yatzy.fourOfAKind(new DiceRoller(5, 5, 5, 4, 5)));
-        assertEquals(8, Yatzy.fourOfAKind(new DiceRoller(2, 2, 2, 2, 5)));
-        assertEquals(0, Yatzy.fourOfAKind(new DiceRoller(2, 2, 2, 5, 5)));
-        assertEquals(8, Yatzy.fourOfAKind(new DiceRoller(2, 2, 2, 2, 2)));
+    @ParameterizedTest
+    @CsvSource({"3, 3, 3, 3, 5,12", "5, 5, 5, 4, 5,20", "2, 2, 2, 2, 5,8", "2, 2, 2, 5, 5,0", "2, 2, 2, 2, 2,8"})
+    public void fourOfAKnd(int d1, int d2, int d3, int d4, int d5, int expected) {
+        assertEquals(expected, Yatzy.fourOfAKind(new DiceRoller(d1, d2, d3, d4, d5)));
     }
 
-    @Test
-    public void smallStraight() {
-        assertEquals(15, Yatzy.smallStraight(new DiceRoller(1, 2, 3, 4, 5)));
-        assertEquals(15, Yatzy.smallStraight(new DiceRoller(2, 3, 4, 5, 1)));
-        assertEquals(0, Yatzy.smallStraight(new DiceRoller(1, 2, 2, 4, 5)));
+    @ParameterizedTest
+    @CsvSource({"1, 2, 3, 4, 5,15", "2, 3, 4, 5, 1,15", "1, 2, 2, 4, 5,0"})
+    public void smallStraight(int d1, int d2, int d3, int d4, int d5, int expected) {
+        assertEquals(expected, Yatzy.smallStraight(new DiceRoller(d1, d2, d3, d4, d5)));
     }
 
-    @Test
-    public void largeStraight() {
-        assertEquals(20, Yatzy.largeStraight(new DiceRoller(6, 2, 3, 4, 5)));
-        assertEquals(20, Yatzy.largeStraight(new DiceRoller(2, 3, 4, 5, 6)));
-        assertEquals(0, Yatzy.largeStraight(new DiceRoller(1, 2, 2, 4, 5)));
+    @ParameterizedTest
+    @CsvSource({"6, 2, 3, 4, 5,20", "2, 3, 4, 5, 6,20", "1, 2, 2, 4, 5,0"})
+    public void largeStraight(int d1, int d2, int d3, int d4, int d5, int expected) {
+        assertEquals(expected, Yatzy.largeStraight(new DiceRoller(d1, d2, d3, d4, d5)));
     }
 
-    @Test
-    public void fullHouse() {
-        assertEquals(18, Yatzy.fullHouse(new DiceRoller(6, 2, 2, 2, 6)));
-        assertEquals(0, Yatzy.fullHouse(new DiceRoller(2, 3, 4, 5, 6)));
-        assertEquals(8, Yatzy.fullHouse(new DiceRoller(1, 1, 2, 2, 2)));
-        assertEquals(0, Yatzy.fullHouse(new DiceRoller(2, 2, 3, 3, 4)));
-        assertEquals(0, Yatzy.fullHouse(new DiceRoller(4, 4, 4, 4, 4)));
+    @ParameterizedTest
+    @CsvSource({"6, 2, 2, 2, 6,18", "2, 3, 4, 5, 6,0", "1, 1, 2, 2, 2,8", "2, 2, 3, 3, 4,0", "4, 4, 4, 4, 4,0"})
+    public void fullHouse(int d1, int d2, int d3, int d4, int d5, int expected) {
+        assertEquals(expected, Yatzy.fullHouse(new DiceRoller(d1, d2, d3, d4, d5)));
     }
 }
