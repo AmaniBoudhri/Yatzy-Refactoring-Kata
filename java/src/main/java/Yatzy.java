@@ -4,13 +4,17 @@ import java.util.Map;
 
 public class Yatzy {
 
+    private static final int YATZY_SCORE = 50;
+    private static final int SMALL_STRAIGHT_SCORE = 15;
+    private static final int LARGE_STRAIGHT_SCORE = 20;
+
     public static int chance(DiceRoller diceRoller) {
         return diceRoller.sum();
     }
 
     public static int yatzy(DiceRoller diceRoller) {
         if (diceRoller.isYatzy()) {
-            return 50;
+            return YATZY_SCORE;
         }
         return 0;
     }
@@ -72,14 +76,14 @@ public class Yatzy {
 
     public static int smallStraight(DiceRoller diceRoller) {
         if (diceRoller.isSmallStraight()) {
-            return 15;
+            return SMALL_STRAIGHT_SCORE;
         }
         return 0;
     }
 
     public static int largeStraight(DiceRoller diceRoller) {
         if (diceRoller.isLargeStraight()) {
-            return 20;
+            return LARGE_STRAIGHT_SCORE;
         }
         return 0;
     }
