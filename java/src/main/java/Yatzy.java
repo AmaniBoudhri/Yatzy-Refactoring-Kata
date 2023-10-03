@@ -66,12 +66,12 @@ public class Yatzy {
     }
 
     public static int threeOfAKind(DiceRoller diceRoller) {
-        return diceRoller.getNumberOfKind(diceRoller.getCountsMap(), 3);
+        return diceRoller.getNumberOfKind(3);
 
     }
 
     public static int fourOfAKind(DiceRoller diceRoller) {
-        return diceRoller.getNumberOfKind(diceRoller.getCountsMap(), 4);
+        return diceRoller.getNumberOfKind(4);
     }
 
     public static int smallStraight(DiceRoller diceRoller) {
@@ -96,7 +96,7 @@ public class Yatzy {
     }
 
     private static boolean isAfullHouse(DiceRoller diceRoller) {
-        return diceRoller.getNumberOfKind(diceRoller.getCountsMap(), 3) != 0 && !diceRoller.findTwoPairs().isEmpty() && !diceRoller.isYatzy();
+        return diceRoller.getNumberOfKind(3) != 0 && !diceRoller.findTwoPairs().isEmpty() && !diceRoller.isYatzy();
     }
 }
 
