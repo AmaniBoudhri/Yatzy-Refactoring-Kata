@@ -16,34 +16,29 @@ public class Yatzy {
             .orElse(0);
     }
 
-    private static int getDiceNumberCount(DiceRoller diceRoller, int diceNumber) {
-        return diceRoller.getCountsMap()
-            .getOrDefault(diceNumber, 0L)
-            .intValue() * diceNumber;
-    }
 
     public static int ones(DiceRoller diceRoller) {
-        return getDiceNumberCount(diceRoller, 1);
+        return diceRoller.getDiceNumberCount(1);
     }
 
     public static int twos(DiceRoller diceRoller) {
-        return getDiceNumberCount(diceRoller, 2);
+        return diceRoller.getDiceNumberCount(2);
     }
 
     public static int threes(DiceRoller diceRoller) {
-        return getDiceNumberCount(diceRoller, 3);
+        return diceRoller.getDiceNumberCount(3);
     }
 
     public static int fours(DiceRoller diceRoller) {
-        return getDiceNumberCount(diceRoller, 4);
+        return diceRoller.getDiceNumberCount(4);
     }
 
     public static int fives(DiceRoller diceRoller) {
-        return getDiceNumberCount(diceRoller, 5);
+        return diceRoller.getDiceNumberCount(5);
     }
 
     public static int sixes(DiceRoller diceRoller) {
-        return getDiceNumberCount(diceRoller, 6);
+        return diceRoller.getDiceNumberCount(6);
     }
 
     public static int pair(DiceRoller diceRoller) {

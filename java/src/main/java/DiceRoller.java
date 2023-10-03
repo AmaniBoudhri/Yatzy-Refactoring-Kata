@@ -22,4 +22,11 @@ public class DiceRoller {
             .mapToInt(Integer::intValue)
             .sum();
     }
+
+    public int getDiceNumberCount(int diceNumber) {
+        return getCountsMap()
+            .getOrDefault(diceNumber, 0L)
+            .intValue() * diceNumber;
+    }
+
 }
