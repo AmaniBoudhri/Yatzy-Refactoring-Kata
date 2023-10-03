@@ -2,8 +2,7 @@ import java.util.List;
 import java.util.Map;
 
 import static java.util.function.Function.identity;
-import static java.util.stream.Collectors.counting;
-import static java.util.stream.Collectors.groupingBy;
+import static java.util.stream.Collectors.*;
 
 public class DiceRoller {
     private final List<Integer> dices;
@@ -27,6 +26,13 @@ public class DiceRoller {
         return getCountsMap()
             .getOrDefault(diceNumber, 0L)
             .intValue() * diceNumber;
+    }
+
+    public List<Integer> findTwoPairs() {
+        return getCountsMap().entrySet().stream()
+            .filter(entry -> entry.getValue() >= 2)
+            .map(Map.Entry::getKey)
+            .collect(toList());
     }
 
 }

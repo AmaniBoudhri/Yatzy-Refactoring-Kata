@@ -1,4 +1,5 @@
 import java.util.Comparator;
+import java.util.List;
 import java.util.Map;
 
 public class Yatzy {
@@ -48,24 +49,18 @@ public class Yatzy {
             .map(diceNumber -> diceNumber * 2).orElse(0);
     }
 
-    public static int twoPairs(int d1, int d2, int d3, int d4, int d5) {
-        int[] counts = new int[6];
-        counts[d1 - 1]++;
-        counts[d2 - 1]++;
-        counts[d3 - 1]++;
-        counts[d4 - 1]++;
-        counts[d5 - 1]++;
-        int n = 0;
-        int score = 0;
-        for (int i = 0; i < 6; i += 1)
-            if (counts[6 - i - 1] >= 2) {
-                n++;
-                score += (6 - i);
-            }
-        if (n == 2)
-            return score * 2;
-        else
-            return 0;
+    private static boolean hasAtLeastTwoPairs(List<Integer> pairs) {
+        return pairs.size() >= 2;
+    }
+
+    public static int twoPairs(DiceRoller diceRoller) {
+        List<Integer> pairs = diceRoller.findTwoPairs();
+        if (hasAtLeastTwoPairs(pairs)) {
+            return pairs.stream()
+                .mapToInt(pair -> pair * 2)
+                .sum();
+        }
+        return 0;
     }
 
     public static int threeOfAKind(int d1, int d2, int d3, int d4, int d5) {
