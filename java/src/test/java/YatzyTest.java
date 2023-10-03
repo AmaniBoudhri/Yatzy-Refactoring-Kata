@@ -68,13 +68,13 @@ public class YatzyTest {
 
     @Test
     public void pair() {
-        assertEquals(6, Yatzy.pair(3, 4, 3, 5, 6));
-        assertEquals(10, Yatzy.pair(5, 3, 3, 3, 5));
-        assertEquals(12, Yatzy.pair(5, 3, 6, 6, 5));
-        assertEquals(8, Yatzy.pair(3, 3, 3, 4, 4));
-        assertEquals(12, Yatzy.pair(1, 1, 6, 2, 6));
-        assertEquals(6, Yatzy.pair(3, 3, 3, 4, 1));
-        assertEquals(6, Yatzy.pair(3, 3, 3, 3, 1));
+        assertEquals(6, Yatzy.pair(new DiceRoller(3, 4, 3, 5, 6)));
+        assertEquals(10, Yatzy.pair(new DiceRoller(5, 3, 3, 3, 5)));
+        assertEquals(12, Yatzy.pair(new DiceRoller(5, 3, 6, 6, 5)));
+        assertEquals(8, Yatzy.pair(new DiceRoller(3, 3, 3, 4, 4)));
+        assertEquals(12, Yatzy.pair(new DiceRoller(1, 1, 6, 2, 6)));
+        assertEquals(6, Yatzy.pair(new DiceRoller(3, 3, 3, 4, 1)));
+        assertEquals(6, Yatzy.pair(new DiceRoller(3, 3, 3, 3, 1)));
     }
 
     @Test
