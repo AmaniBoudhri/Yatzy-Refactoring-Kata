@@ -7,6 +7,7 @@ import static java.util.stream.Collectors.*;
 
 public class DiceRoller {
     private static final List<Integer> SMALL_STRAIGHT_LIST = List.of(1, 2, 3, 4, 5);
+    private static final List<Integer> LARGEST_STRAIGHT_LIST = List.of(2, 3, 4, 5, 6);
     private final List<Integer> dices;
 
     public DiceRoller(int d1, int d2, int d3, int d4, int d5) {
@@ -51,5 +52,12 @@ public class DiceRoller {
             .sorted()
             .collect(toList())
             .equals(SMALL_STRAIGHT_LIST);
+    }
+
+    public boolean isLargeStraight() {
+        return dices.stream()
+            .sorted()
+            .collect(toList())
+            .equals(LARGEST_STRAIGHT_LIST);
     }
 }
