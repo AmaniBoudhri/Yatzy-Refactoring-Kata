@@ -17,7 +17,8 @@
 			"extensions": [
 				"vscjava.vscode-java-pack",
 				"SonarSource.sonarlint-vscode",
-				"redhat.vscode-xml"
+				"redhat.vscode-xml",
+				"github.vscode-github-actions"
 			]
 		}
 	}
