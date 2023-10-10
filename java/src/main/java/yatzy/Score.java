@@ -1,8 +1,10 @@
+package yatzy;
+
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
-public class Yatzy {
+public class Score {
 
     private static final int YATZY_SCORE = 50;
     private static final int SMALL_STRAIGHT_SCORE = 15;
@@ -51,10 +53,6 @@ public class Yatzy {
             .map(diceNumber -> diceNumber * 2).orElse(0);
     }
 
-    private static boolean hasAtLeastTwoPairs(List<Integer> pairs) {
-        return pairs.size() >= 2;
-    }
-
     public static int twoPairs(DiceRoller diceRoller) {
         List<Integer> pairs = diceRoller.findTwoPairs();
         if (hasAtLeastTwoPairs(pairs)) {
@@ -63,6 +61,10 @@ public class Yatzy {
                 .sum();
         }
         return 0;
+    }
+
+    private static boolean hasAtLeastTwoPairs(List<Integer> pairs) {
+        return pairs.size() >= 2;
     }
 
     public static int threeOfAKind(DiceRoller diceRoller) {
