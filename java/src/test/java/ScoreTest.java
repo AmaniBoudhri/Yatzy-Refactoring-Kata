@@ -5,7 +5,6 @@ import static yatzy.Category.FourOfAKind;
 import static yatzy.Category.Fours;
 import static yatzy.Category.FullHouse;
 import static yatzy.Category.LargeStraight;
-import static yatzy.Category.Ones;
 import static yatzy.Category.Pair;
 import static yatzy.Category.Sixes;
 import static yatzy.Category.SmallStraight;
@@ -18,7 +17,10 @@ import static yatzy.Category.Yatzy;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
+import yatzy.CategoryEnum;
 import yatzy.DiceRoller;
+import yatzy.Party;
+import yatzy.factory.PartyFactory;
 
 public class ScoreTest {
 	@ParameterizedTest
@@ -36,37 +38,54 @@ public class ScoreTest {
 	@ParameterizedTest
 	@CsvSource({ "1, 2, 3, 4, 5,1", "1, 2, 1, 4, 5,2", "6, 2, 2, 4, 5,0", "1, 2, 1, 1, 1,4", "3, 3, 3, 4, 5,0" })
 	public void ones(int d1, int d2, int d3, int d4, int d5, int expected) {
-		assertEquals(expected, Ones.calculateScore(new DiceRoller(d1, d2, d3, d4, d5)));
+		PartyFactory factory = new PartyFactory(d1, d2, d3, d4, d5);
+		Party ones = factory.createParty(CategoryEnum.ONES);
+		assertEquals(expected, ones.calculateScore());
 	}
 
 	@ParameterizedTest
 	@CsvSource({ "1, 2, 3, 2, 6,4", "2, 2, 2, 2, 2,10", "2, 3, 2, 5, 1,4" })
 	public void twos(int d1, int d2, int d3, int d4, int d5, int expected) {
 		assertEquals(expected, Twos.calculateScore(new DiceRoller(d1, d2, d3, d4, d5)));
+		PartyFactory factory = new PartyFactory(d1, d2, d3, d4, d5);
+		Party twos = factory.createParty(CategoryEnum.TWOS);
+		assertEquals(expected, twos.calculateScore());
 	}
 
 	@ParameterizedTest
 	@CsvSource({ "1, 2, 3, 2, 3,6", "2, 3, 3, 3, 3,12" })
 	public void threes(int d1, int d2, int d3, int d4, int d5, int expected) {
 		assertEquals(expected, Threes.calculateScore(new DiceRoller(d1, d2, d3, d4, d5)));
+		PartyFactory factory = new PartyFactory(d1, d2, d3, d4, d5);
+		Party threes = factory.createParty(CategoryEnum.THREES);
+		assertEquals(expected, threes.calculateScore());
 	}
 
 	@ParameterizedTest
 	@CsvSource({ "4, 4, 4, 5, 5,12", "4, 4, 5, 5, 5,8", "4, 5, 5, 5, 5,4", "1, 1, 2, 4, 4,8" })
 	public void fours(int d1, int d2, int d3, int d4, int d5, int expected) {
 		assertEquals(expected, Fours.calculateScore(new DiceRoller(d1, d2, d3, d4, d5)));
+		PartyFactory factory = new PartyFactory(d1, d2, d3, d4, d5);
+		Party fours = factory.createParty(CategoryEnum.FOURS);
+		assertEquals(expected, fours.calculateScore());
 	}
 
 	@ParameterizedTest
 	@CsvSource({ "4, 4, 4, 5, 5,10", "4, 4, 5, 5, 5,15", "4, 5, 5, 5, 5,20" })
 	public void fives(int d1, int d2, int d3, int d4, int d5, int expected) {
 		assertEquals(expected, Fives.calculateScore(new DiceRoller(d1, d2, d3, d4, d5)));
+		PartyFactory factory = new PartyFactory(d1, d2, d3, d4, d5);
+		Party fives = factory.createParty(CategoryEnum.FIVES);
+		assertEquals(expected, fives.calculateScore());
 	}
 
 	@ParameterizedTest
 	@CsvSource({ "4, 4, 4, 5, 5,0", "4, 4, 6, 5, 5,6", "6, 5, 6, 6, 5,18" })
 	public void sixes(int d1, int d2, int d3, int d4, int d5, int expected) {
 		assertEquals(expected, Sixes.calculateScore(new DiceRoller(d1, d2, d3, d4, d5)));
+		PartyFactory factory = new PartyFactory(d1, d2, d3, d4, d5);
+		Party sixes = factory.createParty(CategoryEnum.SIXES);
+		assertEquals(expected, sixes.calculateScore());
 	}
 
 	@ParameterizedTest
