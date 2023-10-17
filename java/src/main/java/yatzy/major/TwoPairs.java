@@ -2,27 +2,26 @@ package yatzy.major;
 
 import java.util.List;
 
+import yatzy.Dice;
 import yatzy.Party;
 
-public class TwoPairs extends Party implements CanHaveTwoPairs{
+public class TwoPairs extends Party implements CanHavePairs {
 
-	public TwoPairs(List<Integer> dices) {
+	public TwoPairs(List<Dice> dices) {
 		super(dices);
 	}
 
 	@Override
 	public int calculateScore() {
-		List<Integer> pairs = findTwoPairs(this);
-        if (hasAtLeastTwoPairs(pairs)) {
-            return pairs.stream()
-                .mapToInt(pair -> pair * 2)
-                .sum();
-        }
-        return 0;
+		List<Integer> pairs = findPairs(this);
+		if (hasAtLeastTwoPairs(pairs)) {
+			return pairs.stream().mapToInt(pair -> pair * 2).sum();
+		}
+		return 0;
 	}
 
-    private static boolean hasAtLeastTwoPairs(List<Integer> pairs) {
-        return pairs.size() >= 2;
-    }
+	private static boolean hasAtLeastTwoPairs(List<Integer> pairs) {
+		return pairs.size() >= 2;
+	}
 
 }

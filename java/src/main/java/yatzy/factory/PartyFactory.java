@@ -3,6 +3,7 @@ package yatzy.factory;
 import java.util.List;
 
 import yatzy.Category;
+import yatzy.Dice;
 import yatzy.Party;
 import yatzy.major.Chance;
 import yatzy.major.FullHouse;
@@ -15,9 +16,9 @@ import yatzy.minor.Minor;
 
 public class PartyFactory {
 
-	private List<Integer> dices;
+	private List<Dice> dices;
 
-	public PartyFactory(int d1, int d2, int d3, int d4, int d5) {
+	public PartyFactory(Dice d1, Dice d2, Dice d3, Dice d4, Dice d5) {
 		this.dices = List.of(d1, d2, d3, d4, d5);
 	}
 

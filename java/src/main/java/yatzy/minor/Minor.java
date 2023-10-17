@@ -2,13 +2,14 @@ package yatzy.minor;
 
 import java.util.List;
 
+import yatzy.Dice;
 import yatzy.Party;
 
 public class Minor extends Party {
 
 	protected int diceNumber;
 
-	public Minor(List<Integer> dices, int diceNumber) {
+	public Minor(List<Dice> dices, int diceNumber) {
 		super(dices);
 		this.diceNumber = diceNumber;
 	}

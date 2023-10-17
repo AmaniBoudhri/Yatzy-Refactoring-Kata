@@ -2,26 +2,30 @@ package yatzy.major;
 
 import java.util.List;
 
+import yatzy.Dice;
 import yatzy.Party;
 
-public class FullHouse extends Party implements CanBeNumberOfAKind, CanBeYatzi, CanHaveTwoPairs {
+public class FullHouse extends Party implements CanBeNumberOfAKind, CanBeYatzi, CanHavePairs {
 
-	public FullHouse(List<Integer> dices) {
+	public FullHouse(List<Dice> dices) {
 		super(dices);
 	}
-	
+
+	/**
+	 * Any set of three combined with a different pair
+	 * 
+	 * @return
+	 */
 	private boolean isAfullHouse() {
-        return getNumberOfKind(this, 3) != 0 && !findTwoPairs(this).isEmpty() && !isYatzi(this);
-    }
+		return isNumberOfKind(this, 3) != 0 && !findPairs(this).isEmpty() && !isYatzi(this);
+	}
 
 	@Override
 	public int calculateScore() {
 		if (isAfullHouse()) {
-            return this.dices.stream()
-    	            .mapToInt(Integer::intValue)
-    	            .sum();
-        }
-        return 0;
+			return this.dices.stream().mapToInt(Dice::getValue).sum();
+		}
+		return 0;
 	}
 
 }
